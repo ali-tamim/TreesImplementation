@@ -9,14 +9,43 @@ namespace AliTamim.BinaryTrees
 {
     public class BinaryTree<T> : IEnumerable<T> where T : IComparable<T>
     {
+        private BinaryTreeNode<T> _head;
+        private int _count;
+
         #region Add 
         public void Add(T value)
         {
-            throw new NotImplementedException();
+            if (_head == null)
+            {
+                _head = new BinaryTreeNode<T>(value);
+            } else
+            {
+                AddTo(_head, value);
+            }
+            _count++;
         }
-        public void AddTo(BinaryTreeNode<T> node, T value)
+        private void AddTo(BinaryTreeNode<T> node, T value)
         {
-            throw new NotImplementedException();
+            // value is less than the current node value
+            if(value.CompareTo(node.Value) < 0)
+            {
+                if (node.Left == null)
+                {
+                    node.Left = new BinaryTreeNode<T>(value);
+                } else
+                {
+                    AddTo(node.Left, value);
+                }
+            } else
+            {
+                if (node.Right == null)
+                {
+                    node.Right = new BinaryTreeNode<T>(value);
+                } else
+                {
+                    AddTo(node.Right, value);
+                }
+            }
         }
         #endregion
 
