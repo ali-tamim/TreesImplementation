@@ -1,15 +1,12 @@
-﻿using System;
+﻿
+#define tdd
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AliTamim.BinaryTrees
 {
     public class BinaryTree<T> : IEnumerable<T> where T : IComparable<T>
     {
-        private BinaryTreeNode<T> _head;
+        private BinaryTreeNode<T> _head; // Root of the tree
         private int _count;
 
         #region Add 
@@ -176,5 +173,12 @@ namespace AliTamim.BinaryTrees
             throw new NotImplementedException();
         }
         #endregion
+
+        #if tdd
+        public BinaryTreeNode<T> GetHead()
+        {
+            return _head;
+        }
+        #endif
     }
 }
